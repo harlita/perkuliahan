@@ -1,29 +1,50 @@
-<?php
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Linear Search in PHP</title>
+</head>
+<body>
+    <h2>Linear Search Example</h2>
 
-function linearSearch($arr, $target) {
-    $length = count($arr);
+    <form method="post">
+        <label>Enter array (comma separated):</label><br>
+        <input type="text" name="array" required><br><br>
 
-    for ($i = 0; $i < $length; $i++) {
-        if ($arr[$i] == $target) {
-            // Return index of target element
-            return $i;
+        <label>Enter target value:</label><br>
+        <input type="number" name="target" required><br><br>
+
+        <input type="submit" value="Search">
+    </form>
+
+    <hr>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $arrInput = $_POST["array"];
+        $targetValue = $_POST["target"];
+
+        // Convert input to array
+        $arr = array_map('intval', explode(',', $arrInput));
+
+        function linearSearch($arr, $target) {
+            $length = count($arr);
+            for ($i = 0; $i < $length; $i++) {
+                if ($arr[$i] == $target) {
+                    return $i;
+                }
+            }
+            return -1;
+        }
+
+        $result = linearSearch($arr, $targetValue);
+
+        echo "<h3>Result:</h3>";
+        if ($result != -1) {
+            echo "Element <strong>$targetValue</strong> found at index <strong>$result</strong>.";
+        } else {
+            echo "Element <strong>$targetValue</strong> not found in the array.";
         }
     }
-
-    // Return -1 if target element
-    // is not found
-    return -1;
-}
-
-// Driver code
-$arr = [10, 20, 30, 40, 50];
-$targetValue = 30;
-
-$result = linearSearch($arr, $targetValue);
-
-if ($result != -1) {
-    echo "Element found at index $result";
-} else {
-    echo "Element not found in the array";
-}
-?>
+    ?>
+</body>
+</html>
