@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Linear Search in PHP</title>
-</head>
-<body>
-    <h2>Linear Search Example in PHP</h2>
-    <pre>
 <?php
+
 function linearSearch($arr, $target) {
     $length = count($arr);
 
@@ -17,7 +10,8 @@ function linearSearch($arr, $target) {
         }
     }
 
-    // Return -1 if target element is not found
+    // Return -1 if target element
+    // is not found
     return -1;
 }
 
@@ -33,6 +27,3 @@ if ($result != -1) {
     echo "Element not found in the array";
 }
 ?>
-    </pre>
-</body>
-</html>
